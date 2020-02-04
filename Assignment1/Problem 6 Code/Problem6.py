@@ -1,29 +1,10 @@
 import math
+
 import numpy as np
 
 
+# Calculates the first order derivatives of the gumbel distribution for the given data points using the given params.
 def first_derivative(data, theta):
-    [alpha, beta] = theta
-    return [sum([(1 / beta) * (1 - math.exp(-(x - alpha) / beta)) for x in data]),
-            sum([(-1 / beta) + ((x - alpha) / beta ** 2) - ((x - alpha) / beta ** 2) * math.exp(-(x - alpha) / beta) for
-                 x in data])]
-
-
-def second_derivative(data, theta):
-    [alpha, beta] = theta
-    k = sum([-(1 / beta ** 2) * (1 - math.exp(-(x - alpha) / beta)) - ((x - alpha) / beta ** 3) * math.exp(
-        -(x - alpha) / beta) for x in data])
-    return [[
-        sum([-(1 / beta ** 2) * math.exp(-(x - alpha) / beta) for x in data]),
-        k
-    ], [
-        k,
-        sum([(1 / beta ** 2) + 2 * ((x - alpha) / beta ** 3) * (-1 + math.exp(-(x - alpha) / beta)) + (
-                (x - alpha) ** 2 / beta ** 4) * math.exp(-(x - alpha) / beta) for x in data])
-    ]]
-
-
-def first(data, theta):
     [alpha, beta] = theta
     ans = np.zeros((2,))
     ans[0] = sum([(1 / beta) * (1 - math.exp(-(x - alpha) / beta)) for x in data])
@@ -31,7 +12,8 @@ def first(data, theta):
     return ans
 
 
-def second(data, theta):
+# Calculates the second order derivatives of the gumbel distribution for the given data points using the given params.
+def second_derivative(data, theta):
     [alpha, beta] = theta
     k = sum([-(1 / beta ** 2) * (1 - math.exp(-(x - alpha) / beta)) - ((x - alpha) / beta ** 3) * (
         math.exp(-(x - alpha) / beta)) for x in data])
@@ -45,14 +27,15 @@ def second(data, theta):
     return ans
 
 
+# Uses newton raphson to find the optimized values of alpha and beta.
 def find_param(data):
     theta = np.array([5, 6])
     step = 0
     while True:
-        grad = first(data, theta)
-        inv = np.linalg.inv(second(data, theta))
+        grad = first_derivative(data, theta)
+        inv = np.linalg.inv(second_derivative(data, theta))
         theta_new = theta - np.matmul(inv, grad)
-        if abs(theta_new[0] - theta[0]) < 0.000001 and abs(theta_new[1] - theta[1]) < 0.000001:
+        if abs(theta_new[0] - theta[0]) < 0.000001 or abs(theta_new[1] - theta[1]) < 0.000001:
             break
         if step > 100:
             break
@@ -60,15 +43,18 @@ def find_param(data):
     return theta
 
 
+# calculate the mean of the given list of numbers
 def calc_mean(nos):
     return sum(nos) / len(nos)
 
 
+# calculate the standard deviation of the given list of numbers
 def calc_std_dev(nos):
     mean = calc_mean(nos)
     return math.sqrt(sum([(x - mean) ** 2 for x in nos]) / len(nos))
 
 
+# reports the mean and standard deviation by running the em algorithm for n random datapoints, iter number of times.
 def report_mean_std_dev(alpha, beta, n, iter):
     alphas = []
     betas = []
