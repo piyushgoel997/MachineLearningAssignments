@@ -292,14 +292,14 @@ where $i \in \left\{ 0, 1\right\}$, $\mathbf{m}_{0}=(1,2)$, $\mathbf{m}_{1}=(6,3
     \item
     Considering the $x_{i0} = 1 \forall i \in [1,n]$. The objective function:
     \begin{equation*}
-        C = \sum_{i = 1}^n r_i^2 = \sum_{i = 1}^n \left( \frac{\sum_{j = 0}^d w_j x_{ij} - y_i}{\sqrt{\sum_{j=0}^d w_J^2 + y_i^2}} \right)^2
+        C = \sum_{i = 1}^n r_i^2 = \sum_{i = 1}^n \left( \frac{\sum_{j = 0}^d w_j x_{ij} - y_i}{\sqrt{\sum_{j=0}^d w_j^2}} \right)^2
     \end{equation*}
     The partial derivative of the objective function with respect to some $w_k \forall k \in [0,d]$:
     \begin{equation*}
-        \frac{\partial C}{\partial w_k} =  \sum_{i = 1}^n \frac{2(\sum_{j=0}^d w_j x_{ij} -y_i)x_{ik}(\sum_{j=0}^d w_j^2 + y_i^2) - 2w_k(\sum_{j=0}^d w_j x_{ij} -y_i)^2}{(\sum_{j=0}^d w_j^2 + y_i^2)^2}
+        \frac{\partial C}{\partial w_k} =  \sum_{i = 1}^n \frac{2(\sum_{j=0}^d w_j x_{ij} -y_i)x_{ik}(\sum_{j=0}^d w_j^2) - 2w_k(\sum_{j=0}^d w_j x_{ij} -y_i)^2}{(\sum_{j=0}^d w_j^2)^2}
     \end{equation*}
     \begin{equation*}
-    	\frac{\partial C}{\partial w_k} =  2\sum_{i = 1}^n \frac{(\sum_{j=0}^d w_j x_{ij} -y_i)\left(x_{ik}(\sum_{j=0}^d w_j^2 + y_i^2) - w_k(\sum_{j=0}^d w_j x_{ij} -y_i)\right)}{(\sum_{j=0}^d w_j^2 + y_i^2)^2}
+    	\frac{\partial C}{\partial w_k} =  2\sum_{i = 1}^n \frac{(\sum_{j=0}^d w_j x_{ij} -y_i)\left(x_{ik}(\sum_{j=0}^d w_j^2) - w_k(\sum_{j=0}^d w_j x_{ij} -y_i)\right)}{(\sum_{j=0}^d w_j^2)^2}
     \end{equation*}
     Let $W = \begin{bmatrix} w_0\\w_1\\ \vdots\\ w_d \end{bmatrix}$ and $\Delta = \begin{bmatrix} \frac{\partial C}{\partial w_0}\\\frac{\partial C}{\partial w_1}\\ \vdots\\ \frac{\partial C}{\partial w_1} \end{bmatrix}$.\\
     Therefore the gradient descent update becomes: $W^{(t+1)} = W^{(t)} - \eta \Delta ^ {(t)}$.Now, we just have to initialize the value of $W^{(0)}$ and choose an appropriate $\eta$, then we can just run the update until convergence, and this is the gradient descent algorithm.
