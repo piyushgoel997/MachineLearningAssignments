@@ -184,6 +184,81 @@ where $i \in \left\{ 0, 1\right\}$, $\mathbf{m}_{0}=(1,2)$, $\mathbf{m}_{1}=(6,3
 \item (10 points) Generalize the solution from part (b) to arbitrary covariance matrices $\mathbf{\Sigma}_{0}$ and $\mathbf{\Sigma}_{1}$. Discuss the shape of the optimal decision surface.
 \end{enumerate}
 
+
+\textbf{Solution}
+\begin{enumerate}
+	\item
+	We know that the boundary of the decision surface can be calculated by $P(Y=1|\mathbf{x})=P(Y=0|\mathbf{x})$.
+	Therefore, we get
+	\begin{equation*}
+		\frac{p(\mathbf{x}|Y=1)P(Y=1)}{p(\mathbf{x})} = \frac{p(\mathbf{x}|Y=1)P(Y=0)}{p(\mathbf{x})}
+	\end{equation*}
+	Therefore,
+	\begin{equation*}
+		p(\mathbf{x}|Y=1) = p(\mathbf{x}|Y=0)
+	\end{equation*}
+	\begin{equation*}
+		\frac{1}{(2\pi)^{\nicefrac{1}{2}} |\mathbf{\Sigma}_{1}|^{\nicefrac{1}{2}}}\cdot e^{-\frac{1}{2}(\mathbf{x}-\mathbf{m}_{1})^{T}\mathbf{\Sigma}_{1}^{-1}(\mathbf{x}-\mathbf{m}_{1})} = \frac{1}{(2\pi)^{\nicefrac{1}{2}} |\mathbf{\Sigma}_{2}|^{\nicefrac{1}{2}}}\cdot e^{-\frac{1}{2}(\mathbf{x}-\mathbf{m}_{2})^{T}\mathbf{\Sigma}_{2}^{-1}(\mathbf{x}-\mathbf{m}_{2})}
+	\end{equation*}
+	Canceling the constants on both sides since they're the same and then taking log of both sides (we can do this because both sides are positive), we get
+	\begin{equation*}
+		(\mathbf{x}-\mathbf{m}_{1})^{T}\mathbf{\Sigma}_{1}^{-1}(\mathbf{x}-\mathbf{m}_{1}) = (\mathbf{x}-\mathbf{m}_{2})^{T}\mathbf{\Sigma}_{2}^{-1}(\mathbf{x}-\mathbf{m}_{2})
+	\end{equation*}
+	Taking $\mathbf{x} = \begin{bmatrix} x_1 & x_2 \end{bmatrix}$ and taking the values of all the other matrices we get,
+	\begin{equation*}
+		(x_1 - 1)^2 + (x_2 - 2)^2 = (x_1 - 6)^2 + (x_2 - 3)^2
+	\end{equation*}
+	\begin{equation*}
+		5x_1 + x_2 = 20
+	\end{equation*}
+	
+	
+	\item
+	We know that the boundary of the decision surface can be calculated by $P(Y=1|\mathbf{x})=P(Y=0|\mathbf{x})$.
+	Therefore, we get
+	\begin{equation*}
+		\frac{p(\mathbf{x}|Y=1)P(Y=1)}{p(\mathbf{x})} = \frac{p(\mathbf{x}|Y=1)P(Y=0)}{p(\mathbf{x})}
+	\end{equation*}
+	Taking $P(Y=1) = p$ and $P(Y=0) = 1 - p$. Therefore,
+	\begin{equation*}
+		p\frac{1}{(2\pi)^{\nicefrac{1}{2}} |\mathbf{\Sigma}_{1}|^{\nicefrac{1}{2}}}\cdot e^{-\frac{1}{2}(\mathbf{x}-\mathbf{m}_{1})^{T}\mathbf{\Sigma}_{1}^{-1}(\mathbf{x}-\mathbf{m}_{1})} = (1-p)\frac{1}{(2\pi)^{\nicefrac{1}{2}} |\mathbf{\Sigma}_{2}|^{\nicefrac{1}{2}}}\cdot e^{-\frac{1}{2}(\mathbf{x}-\mathbf{m}_{2})^{T}\mathbf{\Sigma}_{2}^{-1}(\mathbf{x}-\mathbf{m}_{2})}
+	\end{equation*}
+	Canceling common constants and taking log of both sides, we get
+	\begin{equation*}
+	(-1/2)(\mathbf{x}-\mathbf{m}_{1})^{T}\mathbf{\Sigma}_{1}^{-1}(\mathbf{x}-\mathbf{m}_{1}) + \log p= (-1/2)(\mathbf{x}-\mathbf{m}_{2})^{T}\mathbf{\Sigma}_{2}^{-1}(\mathbf{x}-\mathbf{m}_{2}) + \log 1 - p
+	\end{equation*}
+	Taking $\mathbf{x} = \begin{bmatrix} x_1 & x_2 \end{bmatrix}$ and taking the values of all the other matrices we get,
+	\begin{equation*}
+		\frac{(x_1-m_{01})^2 + (x_2 - m_{02})^2}{2\sigma^2} + \log p = \frac{(x_1-m_{11})^2 + (x_2 - m_{12})^2}{2\sigma^2} + \log 1-p 
+	\end{equation*}
+	\begin{equation*}
+		x_1^2-2x_1m_{01}+m_{01}^2 + x_2^2 -2x_2m_{02} + m_{02}^2 + 2\sigma^2\log p = x_1^2-2x_1m_{11}+m_{11}^2 + x_2^2 -2x_2m_{12} + m_{12}^2 + 2\sigma^2\log 1-p 
+	\end{equation*}
+	Therefore we get the equation of the decision surface as
+	\begin{equation*}
+		2x_1(m_{11}-m_{01}) + 2x_2(m_{12} - m_{02}) + m_{01}^2 + m_{02}^2 - m_{11}^2 - m_{12}^2 + 2\sigma^2\log\frac{p}{1-p} = 0
+	\end{equation*}
+	
+	\item
+	We know that the boundary of the decision surface can be calculated by $P(Y=1|\mathbf{x})=P(Y=0|\mathbf{x})$.
+	Therefore, we get
+	\begin{equation*}
+		\frac{p(\mathbf{x}|Y=1)P(Y=1)}{p(\mathbf{x})} = \frac{p(\mathbf{x}|Y=1)P(Y=0)}{p(\mathbf{x})}
+	\end{equation*}
+	Taking $P(Y=1) = p$ and $P(Y=0) = 1 - p$. Therefore,
+	\begin{equation*}
+		p\frac{1}{(2\pi)^{\nicefrac{1}{2}} |\mathbf{\Sigma}_{1}|^{\nicefrac{1}{2}}}\cdot e^{-\frac{1}{2}(\mathbf{x}-\mathbf{m}_{1})^{T}\mathbf{\Sigma}_{1}^{-1}(\mathbf{x}-\mathbf{m}_{1})} = (1-p)\frac{1}{(2\pi)^{\nicefrac{1}{2}} |\mathbf{\Sigma}_{2}|^{\nicefrac{1}{2}}}\cdot e^{-\frac{1}{2}(\mathbf{x}-\mathbf{m}_{2})^{T}\mathbf{\Sigma}_{2}^{-1}(\mathbf{x}-\mathbf{m}_{2})}
+	\end{equation*}
+	Canceling common constants and taking log of both sides, we get the equation of the decision boundary in vector form as follows
+	\begin{equation*}
+		(-1/2)(\mathbf{x}-\mathbf{m}_{1})^{T}\mathbf{\Sigma}_{1}^{-1}(\mathbf{x}-\mathbf{m}_{1}) + \log p -(1/2)\log|\mathbf{\Sigma}_1|= (-1/2)(\mathbf{x}-\mathbf{m}_{2})^{T}\mathbf{\Sigma}_{2}^{-1}(\mathbf{x}-\mathbf{m}_{2}) + \log (1 - p) -(1/2)\log|\mathbf{\Sigma}_2|
+	\end{equation*}
+	In both of the previous parts the decision surface was just a plane of d-dimensions (2 in those cases) because its equation was just the linear combination of all the features (i.e. $x_1$ and $x_2$). In this part though, the equation of the decision surface is not just a linear combination but rather terms of degree 2 may exist as well (depending on the exact values of the covariance matrices). Hence the surface will be a quadratic plane.
+
+\end{enumerate}
+
+
+
 %%
 %% Problem
 %%
@@ -202,18 +277,15 @@ where $i \in \left\{ 0, 1\right\}$, $\mathbf{m}_{0}=(1,2)$, $\mathbf{m}_{1}=(6,3
 \textbf{Solution}
 \begin{enumerate}
     \item 
-    The objective function:
+    Considering the $x_{i0} = 1 \forall i \in [1,n]$. The objective function:
     \begin{equation*}
-        C = \sum_{i=1}^n e_i^2 = \sum_{i=1}^n \left(w_0 + \sum_{j=1}^d w_j x_{ij} - y_i\right)^2
+        C = \sum_{i=1}^n e_i^2 = \sum_{i=1}^n \left(\sum_{j=0}^d w_j x_{ij} - y_i\right)^2
     \end{equation*}
-    The partial derivative of the objective function with respect to some $w_k \forall k \in [1,d]$:
+    The partial derivative of the objective function with respect to some $w_k \forall k \in [0,d]$:
     \begin{equation*}
-        \frac{\partial C}{\partial w_k} = \sum_{i=1}^n 2\left(w_0 + \sum_{j=1}^d w_j x_{ij} - y_i\right)x_{ik}
+        \frac{\partial C}{\partial w_k} = 2\sum_{i=1}^n \left(\sum_{j=0}^d w_j x_{ij} - y_i\right)x_{ik}
     \end{equation*}
-    The partial derivative of the objective function with respect to $w_0$:
-    \begin{equation*}
-        \frac{\partial C}{\partial w_0} = \sum_{i=1}^n 2\left(w_0 + \sum_{j=1}^d w_j x_{ij} - y_i\right)
-    \end{equation*}
+
     Let $W = \begin{bmatrix} w_0\\w_1\\ \vdots\\ w_d \end{bmatrix}$ and $\Delta = \begin{bmatrix} \frac{\partial C}{\partial w_0}\\\frac{\partial C}{\partial w_1}\\ \vdots\\ \frac{\partial C}{\partial w_1} \end{bmatrix}$.\\
     Therefore the gradient descent update becomes: $W^{(t+1)} = W^{(t)} - \eta \Delta ^ {(t)}$.Now, we just have to initialize the value of $W^{(0)}$ and choose an appropriate $\eta$, then we can just run the update until convergence, and this is the gradient descent algorithm.
     
