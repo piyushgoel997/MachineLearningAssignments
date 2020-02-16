@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.20 (TeX Live 2019/W32TeX) (preloaded format=pdflatex 2020.2.7)  12 FEB 2020 23:25
+This is pdfTeX, Version 3.14159265-2.6-1.40.20 (TeX Live 2019/W32TeX) (preloaded format=pdflatex 2020.2.7)  16 FEB 2020 12:33
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -316,6 +316,19 @@ mr/m/n/10 ) \OMS/cmsy/m/n/10 ^^@ \OT1/cmr/m/n/10 (1\OML/cmm/m/it/10 =\OT1/cmr/m
 /n/10 2) [] \OMS/cmsy/m/n/10 j\OT1/cmr/bx/n/10 ^^F[]\OMS/cmsy/m/n/10 j
  []
 
+
+Overfull \hbox (39.57408pt too wide) detected at line 258
+\OML/cmm/m/it/10 x[]\OT1/cmr/m/n/10 (^^F[] \OMS/cmsy/m/n/10 ^^@ \OT1/cmr/m/n/10
+ ^^F[])\OML/cmm/m/it/10 x \OMS/cmsy/m/n/10 ^^@ \OT1/cmr/m/n/10 (\OML/cmm/m/it/1
+0 m[]\OT1/cmr/m/n/10 ^^F[] \OMS/cmsy/m/n/10 ^^@ \OML/cmm/m/it/10 m[]\OT1/cmr/m/
+n/10 ^^F[])\OML/cmm/m/it/10 x \OMS/cmsy/m/n/10 ^^@ \OML/cmm/m/it/10 x[]\OT1/cmr
+/m/n/10 (^^F[]\OML/cmm/m/it/10 m[] \OMS/cmsy/m/n/10 ^^@ \OT1/cmr/m/n/10 ^^F[]\O
+ML/cmm/m/it/10 m[]\OT1/cmr/m/n/10 ) + \OML/cmm/m/it/10 m[]\OT1/cmr/m/n/10 ^^F[]
+\OML/cmm/m/it/10 m[] \OMS/cmsy/m/n/10 ^^@ \OML/cmm/m/it/10 m[]\OT1/cmr/m/n/10 ^
+^F[]\OML/cmm/m/it/10 m[] \OMS/cmsy/m/n/10 ^^@ \OT1/cmr/m/n/10 2 [] [] + [] [] =
+ 0
+ []
+
 [4] [5] (./hw2.aux) ) 
 Here is how much of TeX's memory you used:
  3306 strings out of 481248
@@ -324,7 +337,7 @@ Here is how much of TeX's memory you used:
  18538 multiletter control sequences out of 15000+600000
  535961 words of font info for 38 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 38i,9n,31p,590b,217s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 38i,9n,31p,707b,217s stack positions out of 5000i,500n,10000p,200000b,80000s
 <c:/texlive/2019/texmf-dist/fonts/type1/public/amsfonts/cm
 /cmbx10.pfb><c:/texlive/2019/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx7.pf
 b><c:/texlive/2019/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb><c:/tex
@@ -340,7 +353,7 @@ texmf-dist/fonts/type1/public/amsfonts/cm/cmsy5.pfb><c:/texlive/2019/texmf-dist
 /fonts/type1/public/amsfonts/cm/cmsy7.pfb><c:/texlive/2019/texmf-dist/fonts/typ
 e1/public/amsfonts/cm/cmti10.pfb><c:/texlive/2019/texmf-dist/fonts/type1/public
 /amsfonts/symbols/msbm10.pfb>
-Output written on hw2.pdf (5 pages, 177112 bytes).
+Output written on hw2.pdf (5 pages, 178661 bytes).
 PDF statistics:
  84 PDF objects out of 1000 (max. 8388607)
  60 compressed objects within 1 object stream

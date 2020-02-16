@@ -253,7 +253,10 @@ where $i \in \left\{ 0, 1\right\}$, $\mathbf{m}_{0}=(1,2)$, $\mathbf{m}_{1}=(6,3
 	\begin{equation*}
 		(-1/2)(\mathbf{x}-\mathbf{m}_{1})^{T}\mathbf{\Sigma}_{1}^{-1}(\mathbf{x}-\mathbf{m}_{1}) + \log p -(1/2)\log|\mathbf{\Sigma}_1|= (-1/2)(\mathbf{x}-\mathbf{m}_{2})^{T}\mathbf{\Sigma}_{2}^{-1}(\mathbf{x}-\mathbf{m}_{2}) + \log (1 - p) -(1/2)\log|\mathbf{\Sigma}_2|
 	\end{equation*}
-	In both of the previous parts the decision surface was just a plane of d-dimensions (2 in those cases) because its equation was just the linear combination of all the features (i.e. $x_1$ and $x_2$). In this part though, the equation of the decision surface is not just a linear combination but rather terms of degree 2 may exist as well (depending on the exact values of the covariance matrices). Hence the surface will be a quadratic plane.
+	\begin{equation*}
+		x^T(\Sigma_1^{-1} - \Sigma_2^{-1})x - (m_1^T\Sigma_1^{-1} - m_2^T\Sigma_2^{-1})x - x^T(\Sigma_1^{-1}m_1 - \Sigma_2^{-1}m_2) + m_1\Sigma_1^{-1}m_1^T - m_2\Sigma_2^{-1}m_2^T -2\log \frac{p}{1-p} + \log\frac{|\Sigma_1|}{|\Sigma_2|} = 0
+	\end{equation*}
+	In both of the previous parts the decision surface was just a linear plane of d-dimensions (2 in those cases) because its equation was just the linear combination of all the features (i.e. $x_1$ and $x_2$). In this part though, the equation of the decision surface is not just a linear combination but rather terms of degree 2 may exist as well. Hence the surface will be a \textbf{quadratic plane}. Though this would depend on the value of the covariance matrices, if $\Sigma_1 = \Sigma_2$, then the coefficient of the quadratic term would be zero and hence the equation of the plane would only contain linear terms in $x$, and would result in a linear plane in the d-dimensions.
 
 \end{enumerate}
 
@@ -277,29 +280,33 @@ where $i \in \left\{ 0, 1\right\}$, $\mathbf{m}_{0}=(1,2)$, $\mathbf{m}_{1}=(6,3
 \textbf{Solution}
 \begin{enumerate}
     \item 
-    Considering the $x_{i0} = 1 \forall i \in [1,n]$. The objective function:
+    The objective function:
     \begin{equation*}
-        C = \sum_{i=1}^n e_i^2 = \sum_{i=1}^n \left(\sum_{j=0}^d w_j x_{ij} - y_i\right)^2
+        C = \sum_{i=1}^n e_i^2 = \sum_{i=1}^n \left(w_0 + \sum_{j=1}^d w_j x_{ij} - y_i\right)^2
     \end{equation*}
-    The partial derivative of the objective function with respect to some $w_k \forall k \in [0,d]$:
+    The partial derivative of the objective function with respect to some $w_k \forall k \in [1,d]$:
     \begin{equation*}
-        \frac{\partial C}{\partial w_k} = 2\sum_{i=1}^n \left(\sum_{j=0}^d w_j x_{ij} - y_i\right)x_{ik}
+        \frac{\partial C}{\partial w_k} = 2\sum_{i=1}^n \left(w_0 + \sum_{j=1}^d w_j x_{ij} - y_i\right)x_{ik}
     \end{equation*}
+    The partial derivative of the objective function with respect to $w_0$ is:
+    \begin{equation*}
+		\frac{\partial C}{\partial w_0} = 2\sum_{i=1}^n \left(w_0 + \sum_{j=1}^d w_j x_{ij} - y_i\right)
+	\end{equation*}
 
     Let $W = \begin{bmatrix} w_0\\w_1\\ \vdots\\ w_d \end{bmatrix}$ and $\Delta = \begin{bmatrix} \frac{\partial C}{\partial w_0}\\\frac{\partial C}{\partial w_1}\\ \vdots\\ \frac{\partial C}{\partial w_1} \end{bmatrix}$.\\
     Therefore the gradient descent update becomes: $W^{(t+1)} = W^{(t)} - \eta \Delta ^ {(t)}$.Now, we just have to initialize the value of $W^{(0)}$ and choose an appropriate $\eta$, then we can just run the update until convergence, and this is the gradient descent algorithm.
     
     \item
-    Considering the $x_{i0} = 1 \forall i \in [1,n]$. The objective function:
+    The objective function:
     \begin{equation*}
-        C = \sum_{i = 1}^n r_i^2 = \sum_{i = 1}^n \left( \frac{\sum_{j = 0}^d w_j x_{ij} - y_i}{\sqrt{\sum_{j=0}^d w_j^2}} \right)^2
+        C = \sum_{i = 1}^n r_i^2 = \sum_{i = 1}^n \left( \frac{w_0 + \sum_{j = 1}^d w_j x_{ij} - y_i}{\sqrt{\sum_{j=1}^d w_j^2}} \right)^2
     \end{equation*}
-    The partial derivative of the objective function with respect to some $w_k \forall k \in [0,d]$:
+    The partial derivative of the objective function with respect to some $w_k \forall k \in [1,d]$:
     \begin{equation*}
-        \frac{\partial C}{\partial w_k} =  \sum_{i = 1}^n \frac{2(\sum_{j=0}^d w_j x_{ij} -y_i)x_{ik}(\sum_{j=0}^d w_j^2) - 2w_k(\sum_{j=0}^d w_j x_{ij} -y_i)^2}{(\sum_{j=0}^d w_j^2)^2}
+        \frac{\partial C}{\partial w_k} =  \sum_{i = 1}^n \frac{2(w_0 + \sum_{j=1}^d w_j x_{ij} -y_i)x_{ik}(\sum_{j=1}^d w_j^2) - 2w_k(w_0 + \sum_{j=1}^d w_j x_{ij} -y_i)^2}{(\sum_{j=1}^d w_j^2)^2}
     \end{equation*}
     \begin{equation*}
-    	\frac{\partial C}{\partial w_k} =  2\sum_{i = 1}^n \frac{(\sum_{j=0}^d w_j x_{ij} -y_i)\left(x_{ik}(\sum_{j=0}^d w_j^2) - w_k(\sum_{j=0}^d w_j x_{ij} -y_i)\right)}{(\sum_{j=0}^d w_j^2)^2}
+    	\frac{\partial C}{\partial w_k} =  2\sum_{i = 1}^n \frac{(w_0 + \sum_{j=1}^d w_j x_{ij} -y_i)\left(x_{ik}(\sum_{j=1}^d w_j^2) - w_k(w_0 + \sum_{j=1}^d w_j x_{ij} -y_i)\right)}{(\sum_{j=0}^d w_j^2)^2}
     \end{equation*}
     Let $W = \begin{bmatrix} w_0\\w_1\\ \vdots\\ w_d \end{bmatrix}$ and $\Delta = \begin{bmatrix} \frac{\partial C}{\partial w_0}\\\frac{\partial C}{\partial w_1}\\ \vdots\\ \frac{\partial C}{\partial w_1} \end{bmatrix}$.\\
     Therefore the gradient descent update becomes: $W^{(t+1)} = W^{(t)} - \eta \Delta ^ {(t)}$.Now, we just have to initialize the value of $W^{(0)}$ and choose an appropriate $\eta$, then we can just run the update until convergence, and this is the gradient descent algorithm.

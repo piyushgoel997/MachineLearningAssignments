@@ -3,6 +3,7 @@ import random
 import numpy as np
 
 
+# function to calculate the derivatives of the sse objective function
 def calculate_derivatives_sse(prev_weights, data, correct_outputs):
     derivatives = []
     for k in range(len(prev_weights)):
@@ -21,6 +22,7 @@ def calculate_derivatives_sse(prev_weights, data, correct_outputs):
     return derivatives
 
 
+# function to calculate the derivatives of the ssd objective function
 def calculate_derivatives_ssd(prev_weights, data, correct_outputs):
     derivatives = []
     for k in range(len(prev_weights)):
@@ -31,7 +33,8 @@ def calculate_derivatives_ssd(prev_weights, data, correct_outputs):
             b = 0  # sum of squares of w_j
             a = -y_i  # prediction - y_i
             for j in range(len(x_i)):
-                b += prev_weights[j] ** 2
+                if j is not 1:
+                    b += prev_weights[j] ** 2
                 a += prev_weights[j] * x_i[j]
             derivative += (a * (x_i[k] * b - prev_weights[k] * a)) / (b ** 2)
         derivative *= 2
@@ -39,6 +42,7 @@ def calculate_derivatives_ssd(prev_weights, data, correct_outputs):
     return derivatives
 
 
+# function to do just one iteration of the gradient descent algorithm
 def grad_descent_iter(prev_weights, data, correct_outputs, learning_rate, objective_function):
     if objective_function is "sse":
         delta = calculate_derivatives_sse(prev_weights, data, correct_outputs)
@@ -53,10 +57,12 @@ def grad_descent_iter(prev_weights, data, correct_outputs, learning_rate, object
     return new_weights
 
 
+# a function to initialize weights by random values.
 def initialize_weights(k):
     return [random.random() for _ in range(k)]
 
 
+# learn weights using gradient descent algorithm
 def learn_weights(data, correct_outputs, objective_function, learning_rate=0.00001, iterations=1000):
     weights = initialize_weights(len(data[0]))
     for i in range(iterations):
@@ -69,13 +75,14 @@ def learn_weights(data, correct_outputs, objective_function, learning_rate=0.000
     return weights
 
 
+# learn weights using the maximum likelyhood closed form solution
 def learn_weights_closed_form(data, correct_outputs):
     X = np.array(data)
     Y = np.array(correct_outputs)
     return np.matmul(np.matmul(np.linalg.inv(np.matmul(X.transpose(), X)), X.transpose()), Y)
 
 
-# don't forget to add ones in the first column of data.
+# random data generator
 def generate_random_data(original_weights, std_dev=0.0, num_points=100):
     data = []
     for i in range(num_points):
@@ -91,6 +98,7 @@ def generate_random_data(original_weights, std_dev=0.0, num_points=100):
     return data, correct_outputs
 
 
+# function to predict the output values using the input data and the weights to be used.
 def predict(data, weights):
     pred = []
     for xi in data:
@@ -98,6 +106,7 @@ def predict(data, weights):
     return pred
 
 
+# function to calculate the r2 value
 def calc_r2(actual_output, predicted_output):
     ss_res = 0
     for i in range(len(actual_output)):
@@ -115,21 +124,20 @@ def calc_r2(actual_output, predicted_output):
     return 1 - (ss_res / ss_tot)
 
 
-random.seed = 1
 w = [1, 2, 3, 4]
 data, outputs = generate_random_data(w, num_points=100, std_dev=0.5)
 print("Original weights", w)
 learned_weights_closed_form = learn_weights_closed_form(data, outputs)
-print("Closed Form")
+print("Closed Form (Maximum Likelyhood)-")
 print("Learned weights", learned_weights_closed_form)
 print("R2", calc_r2(outputs, predict(data, learned_weights_closed_form)))
 # plt.plot(np.array(data)[:, 1], outputs)
 learned_weights_sse = learn_weights(data, outputs, objective_function="sse", learning_rate=0.00001, iterations=10000)
-print("SSE")
+print("Sum of Squared Errors-")
 print("Learned weights", learned_weights_sse)
 print("R2", calc_r2(outputs, predict(data, learned_weights_sse)))
 learned_weights_ssd = learn_weights(data, outputs, objective_function="ssd", learning_rate=0.00001, iterations=10000)
-print("SSD")
+print("Sum of Squared Distances-")
 print("Learned weights", learned_weights_ssd)
 print("R2", calc_r2(outputs, predict(data, learned_weights_ssd)))
 # data, outputs = generate_random_data(learned_weights, num_points=10)
@@ -137,12 +145,12 @@ print("R2", calc_r2(outputs, predict(data, learned_weights_ssd)))
 # plt.show()
 
 # Original weights [1, 2, 3, 4]
-# Closed Form
-# Learned weights [2.02271925 1.97841801 3.01558258 4.00074691]
-# R2 0.9997030883657995
-# SSE
-# Learned weights [1.8995071661015586, 1.9857066706075073, 3.0233519580556356, 4.008558459319282]
-# R2 0.9996960847774278
-# SSD
-# Learned weights [2.333128758543021, 2.0538434231897953, 2.790335606860405, 4.092240408037085]
-# R2 0.9980189478657999
+# Closed Form (Maximum Likelyhood)-
+# Learned weights [2.0892853  1.9984383  2.98320005 4.00456074]
+# R2 0.9997125847254758
+# Sum of Squared Errors-
+# Learned weights [1.8947922787888385, 2.0077965099920996, 2.996339909099974, 4.015841178613401]
+# R2 0.9996978103942393
+# Sum of Squared Distances-
+# Learned weights [1.7332730012808568, 2.017864246010835, 3.0052910312270726, 4.025064453402796]
+# R2 0.9996627993765199
