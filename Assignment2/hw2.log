@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.20 (TeX Live 2019/W32TeX) (preloaded format=pdflatex 2020.2.7)  16 FEB 2020 12:33
+This is pdfTeX, Version 3.14159265-2.6-1.40.20 (TeX Live 2019/W32TeX) (preloaded format=pdflatex 2020.2.7)  16 FEB 2020 19:31
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -317,16 +317,15 @@ mr/m/n/10 ) \OMS/cmsy/m/n/10 ^^@ \OT1/cmr/m/n/10 (1\OML/cmm/m/it/10 =\OT1/cmr/m
  []
 
 
-Overfull \hbox (39.57408pt too wide) detected at line 258
-\OML/cmm/m/it/10 x[]\OT1/cmr/m/n/10 (^^F[] \OMS/cmsy/m/n/10 ^^@ \OT1/cmr/m/n/10
- ^^F[])\OML/cmm/m/it/10 x \OMS/cmsy/m/n/10 ^^@ \OT1/cmr/m/n/10 (\OML/cmm/m/it/1
-0 m[]\OT1/cmr/m/n/10 ^^F[] \OMS/cmsy/m/n/10 ^^@ \OML/cmm/m/it/10 m[]\OT1/cmr/m/
-n/10 ^^F[])\OML/cmm/m/it/10 x \OMS/cmsy/m/n/10 ^^@ \OML/cmm/m/it/10 x[]\OT1/cmr
-/m/n/10 (^^F[]\OML/cmm/m/it/10 m[] \OMS/cmsy/m/n/10 ^^@ \OT1/cmr/m/n/10 ^^F[]\O
-ML/cmm/m/it/10 m[]\OT1/cmr/m/n/10 ) + \OML/cmm/m/it/10 m[]\OT1/cmr/m/n/10 ^^F[]
-\OML/cmm/m/it/10 m[] \OMS/cmsy/m/n/10 ^^@ \OML/cmm/m/it/10 m[]\OT1/cmr/m/n/10 ^
-^F[]\OML/cmm/m/it/10 m[] \OMS/cmsy/m/n/10 ^^@ \OT1/cmr/m/n/10 2 [] [] + [] [] =
- 0
+Overfull \hbox (57.16536pt too wide) detected at line 258
+\OT1/cmr/bx/n/10 x[]\OT1/cmr/m/n/10 (\OT1/cmr/bx/n/10 ^^F[] \OMS/cmsy/m/n/10 ^^
+@ \OT1/cmr/bx/n/10 ^^F[]\OT1/cmr/m/n/10 )\OT1/cmr/bx/n/10 x \OMS/cmsy/m/n/10 ^^
+@ \OT1/cmr/m/n/10 (\OT1/cmr/bx/n/10 m[]^^F[] \OMS/cmsy/m/n/10 ^^@ \OT1/cmr/bx/n
+/10 m[]^^F[]\OT1/cmr/m/n/10 )\OT1/cmr/bx/n/10 x \OMS/cmsy/m/n/10 ^^@ \OT1/cmr/b
+x/n/10 x[]\OT1/cmr/m/n/10 (\OT1/cmr/bx/n/10 ^^F[]m[] \OMS/cmsy/m/n/10 ^^@ \OT1/
+cmr/bx/n/10 ^^F[]m[]\OT1/cmr/m/n/10 ) + \OT1/cmr/bx/n/10 m[]^^F[]m[] \OMS/cmsy/
+m/n/10 ^^@ \OT1/cmr/bx/n/10 m[]^^F[]m[] \OMS/cmsy/m/n/10 ^^@ \OT1/cmr/m/n/10 2 
+[] [] + [] [] = 0
  []
 
 [4] [5] (./hw2.aux) ) 
@@ -353,7 +352,7 @@ texmf-dist/fonts/type1/public/amsfonts/cm/cmsy5.pfb><c:/texlive/2019/texmf-dist
 /fonts/type1/public/amsfonts/cm/cmsy7.pfb><c:/texlive/2019/texmf-dist/fonts/typ
 e1/public/amsfonts/cm/cmti10.pfb><c:/texlive/2019/texmf-dist/fonts/type1/public
 /amsfonts/symbols/msbm10.pfb>
-Output written on hw2.pdf (5 pages, 178661 bytes).
+Output written on hw2.pdf (5 pages, 178804 bytes).
 PDF statistics:
  84 PDF objects out of 1000 (max. 8388607)
  60 compressed objects within 1 object stream

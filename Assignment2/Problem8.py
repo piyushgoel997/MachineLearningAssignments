@@ -27,16 +27,20 @@ def calculate_derivatives_ssd(prev_weights, data, correct_outputs):
     derivatives = []
     for k in range(len(prev_weights)):
         derivative = 0
+        b = 1  # 1 + sum of squares of w_j
+        for j in range(len(prev_weights)):
+            if j is not 0:
+                b += prev_weights[j] ** 2
         for i in range(len(data)):
             x_i = data[i]
             y_i = correct_outputs[i]
-            b = 0  # sum of squares of w_j
             a = -y_i  # prediction - y_i
             for j in range(len(x_i)):
-                if j is not 1:
-                    b += prev_weights[j] ** 2
                 a += prev_weights[j] * x_i[j]
-            derivative += (a * (x_i[k] * b - prev_weights[k] * a)) / (b ** 2)
+            if k is 0:
+                derivative += a
+            else:
+                derivative += (a * (x_i[k] * b - prev_weights[k] * a)) / (b ** 2)
         derivative *= 2
         derivatives.append(derivative)
     return derivatives
@@ -69,7 +73,7 @@ def learn_weights(data, correct_outputs, objective_function, learning_rate=0.000
         new_weights = grad_descent_iter(weights, data, correct_outputs, learning_rate, objective_function)
         diff = abs(sum([new_weights[k] - weights[k] for k in range(len(weights))]))
         weights = new_weights
-        if diff <= 0.0000001:
+        if diff <= 0.000001:
             break
         # print(weights)
     return weights
@@ -146,11 +150,11 @@ print("R2", calc_r2(outputs, predict(data, learned_weights_ssd)))
 
 # Original weights [1, 2, 3, 4]
 # Closed Form (Maximum Likelyhood)-
-# Learned weights [2.0892853  1.9984383  2.98320005 4.00456074]
-# R2 0.9997125847254758
+# Learned weights [1.98959659 2.03284349 2.98990884 3.98177351]
+# R2 0.999622743347507
 # Sum of Squared Errors-
-# Learned weights [1.8947922787888385, 2.0077965099920996, 2.996339909099974, 4.015841178613401]
-# R2 0.9996978103942393
+# Learned weights [1.7694139777872926, 2.049135767835966, 2.99916767019839, 3.9969805557459295]
+# R2 0.9996033970619937
 # Sum of Squared Distances-
-# Learned weights [1.7332730012808568, 2.017864246010835, 3.0052910312270726, 4.025064453402796]
-# R2 0.9996627993765199
+# Learned weights [2.447238430748347, 1.9935916023769753, 2.9810605459785293, 3.942414035492492]
+# R2 0.9995331695885914
