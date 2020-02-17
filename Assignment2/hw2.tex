@@ -52,8 +52,8 @@
 \lecture{Homework Assignment \# 2}{02/05/2020}{02/18/2020, 11:59pm, through Blackboard}
 
 \begin{center}
-Three problems, 95 points in total. Good luck!\\
-Prof. Predrag Radivojac, Northeastern University
+Name: Piyush Goel\\
+Email: goel.pi@husky.neu.edu
 \end{center}
 
 %%
@@ -130,12 +130,12 @@ Carry out all steps manually and show all your calculations.
     Therefore, $p(+|X_1) = 0$ and $p(-|X_1) = 1$
     Similarly, we get
     \begin{equation*}
-         p(X_2|+) = p(+1|+)p(x_1=-1|+)p(x_2=1|+)p(x_1x_2=-1|+)p(x_1^2=1|+)p(x_2^2=1|+) = 1/32
+         p(X_2|+) = p(+1|+)p(x_1=-1|+)p(x_2=1|+)p(x_1x_2=-1|+)p(x_1^2=1|+)p(x_2^2=1|+) = 1/8
     \end{equation*}
     Therefore, $p(+|X_2) = 1$ and $p(-|X_2) = 0$.
     Similarly,
     \begin{equation*}
-        p(X_3|+) = p(+1|+)p(x_1=1|+)p(x_2=-1|+)p(x_1x_2=-1|+)p(x_1^2=1|+)p(x_2^2=1|+) = 1/32
+        p(X_3|+) = p(+1|+)p(x_1=1|+)p(x_2=-1|+)p(x_1x_2=-1|+)p(x_1^2=1|+)p(x_2^2=1|+) = 1/8
     \end{equation*}
     Therefore, $p(+|X_3) = 1$ and $p(-|X_3) = 0$.
     Similarly,
@@ -155,15 +155,15 @@ Carry out all steps manually and show all your calculations.
         p(X_1|+) = p(+1|+)p(x_1=-1|+)p(x_2=-1|+)p(x_1x_2=1|+)p(x_1^2=1|+)p(x_2^2=1|+)p(-x_1x_2=-1|+) = 0
     \end{equation*}
     \begin{equation*}
-        p(X_2|+) = p(+1|+)p(x_1=-1|+)p(x_2=1|+)p(x_1x_2=-1|+)p(x_1^2=1|+)p(x_2^2=1|+)p(-x_1x_2 = 1|+) = 1/32
+        p(X_2|+) = p(+1|+)p(x_1=-1|+)p(x_2=1|+)p(x_1x_2=-1|+)p(x_1^2=1|+)p(x_2^2=1|+)p(-x_1x_2 = 1|+) = 1/8
     \end{equation*}
     \begin{equation*}
-        p(X_3|+) = p(+1|+)p(x_1=1|+)p(x_2=-1|+)p(x_1x_2=-1|+)p(x_1^2=1|+)p(x_2^2=1|+)p(-x_1x_2 = 1|+) = 1/32
+        p(X_3|+) = p(+1|+)p(x_1=1|+)p(x_2=-1|+)p(x_1x_2=-1|+)p(x_1^2=1|+)p(x_2^2=1|+)p(-x_1x_2 = 1|+) = 1/8
     \end{equation*}
     \begin{equation*}
         p(X_4|+) = p(+1|+)p(x_1=1|+)p(x_2=1|+)p(x_1x_2=1|+)p(x_1^2=1|+)p(x_2^2=1|+)p(-x_1x_2=-1|+) = 0
     \end{equation*}
-    Hence, $p(+|X_1) = 0 , p(-|X_1) = 1 , p(+|X_2) = 1 , p(-|X_2) = 0 , p(+|X_3) = 1 , p(-|X_3) = 0 , p(+|X_4) = 0 , p(-|X_4) = 1$. And as we can see all these probabilities remain the same as before.\\
+    Hence, $p(+|X_1) = 0 , p(-|X_1) = 1 , p(+|X_2) = 1 , p(-|X_2) = 0 , p(+|X_3) = 1 , p(-|X_3) = 0 , p(+|X_4) = 0 , p(-|X_4) = 1$. And as we can see all these probabilities remain the same as the previous part.\\
     Therefore the accuracy of this classifier is 1 (or 100\%) as well.
 \end{enumerate}
 
@@ -253,6 +253,7 @@ where $i \in \left\{ 0, 1\right\}$, $\mathbf{m}_{0}=(1,2)$, $\mathbf{m}_{1}=(6,3
 	\begin{equation*}
 		(-1/2)(\mathbf{x}-\mathbf{m}_{1})^{T}\mathbf{\Sigma}_{1}^{-1}(\mathbf{x}-\mathbf{m}_{1}) + \log p -(1/2)\log|\mathbf{\Sigma}_1|= (-1/2)(\mathbf{x}-\mathbf{m}_{2})^{T}\mathbf{\Sigma}_{2}^{-1}(\mathbf{x}-\mathbf{m}_{2}) + \log (1 - p) -(1/2)\log|\mathbf{\Sigma}_2|
 	\end{equation*}
+	Simplifying it further we get
 	\begin{equation*}
 		\mathbf{x}^T(\mathbf{\Sigma}_1^{-1} - \mathbf{\Sigma}_2^{-1})\mathbf{x} - (\mathbf{m}_{1}^T\mathbf{\Sigma}_1^{-1} - \mathbf{m}_{2}^T\mathbf{\Sigma}_2^{-1})\mathbf{x} - \mathbf{x}^T(\mathbf{\Sigma}_1^{-1}\mathbf{m}_{1} - \mathbf{\Sigma}_2^{-1}\mathbf{m}_{2}) + \mathbf{m}_{1}\mathbf{\Sigma}_1^{-1}\mathbf{m}_{1}^T - \mathbf{m}_{2}\mathbf{\Sigma}_2^{-1}\mathbf{m}_{2}^T -2\log \frac{p}{1-p} + \log\frac{|\mathbf{\Sigma}_1|}{|\mathbf{\Sigma}_2|} = 0
 	\end{equation*}
@@ -315,6 +316,8 @@ where $i \in \left\{ 0, 1\right\}$, $\mathbf{m}_{0}=(1,2)$, $\mathbf{m}_{1}=(6,3
     Let $W = \begin{bmatrix} w_0\\w_1\\ \vdots\\ w_d \end{bmatrix}$ and $\Delta = \begin{bmatrix} \frac{\partial C}{\partial w_0}\\\frac{\partial C}{\partial w_1}\\ \vdots\\ \frac{\partial C}{\partial w_1} \end{bmatrix}$.\\
     Therefore the gradient descent update becomes: $W^{(t+1)} = W^{(t)} - \eta \Delta ^ {(t)}$.Now, we just have to initialize the value of $W^{(0)}$ and choose an appropriate $\eta$, then we can just run the update until convergence, and this is the gradient descent algorithm.
     
+    \item
+	\includegraphics[scale=0.7]{prob3_output}
     
 \end{enumerate}
 

@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.20 (TeX Live 2019/W32TeX) (preloaded format=pdflatex 2020.2.7)  16 FEB 2020 19:31
+This is pdfTeX, Version 3.14159265-2.6-1.40.20 (TeX Live 2019/W32TeX) (preloaded format=pdflatex 2020.2.7)  17 FEB 2020 17:50
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -251,7 +251,7 @@ j\OT1/cmr/m/n/10 +) = 0
  []
 
 
-Overfull \hbox (29.32137pt too wide) detected at line 159
+Overfull \hbox (24.32135pt too wide) detected at line 159
 \OML/cmm/m/it/10 p\OT1/cmr/m/n/10 (\OML/cmm/m/it/10 X[]\OMS/cmsy/m/n/10 j\OT1/c
 mr/m/n/10 +) = \OML/cmm/m/it/10 p\OT1/cmr/m/n/10 (+1\OMS/cmsy/m/n/10 j\OT1/cmr/
 m/n/10 +)\OML/cmm/m/it/10 p\OT1/cmr/m/n/10 (\OML/cmm/m/it/10 x[] \OT1/cmr/m/n/1
@@ -264,11 +264,11 @@ OT1/cmr/m/n/10 = 1\OMS/cmsy/m/n/10 j\OT1/cmr/m/n/10 +)\OML/cmm/m/it/10 p\OT1/cm
 r/m/n/10 (\OML/cmm/m/it/10 x[] \OT1/cmr/m/n/10 = 1\OMS/cmsy/m/n/10 j\OT1/cmr/m/
 n/10 +)\OML/cmm/m/it/10 p\OT1/cmr/m/n/10 (\OMS/cmsy/m/n/10 ^^@\OML/cmm/m/it/10 
 x[]x[] \OT1/cmr/m/n/10 = 1\OMS/cmsy/m/n/10 j\OT1/cmr/m/n/10 +) = 1\OML/cmm/m/it
-/10 =\OT1/cmr/m/n/10 32
+/10 =\OT1/cmr/m/n/10 8
  []
 
 
-Overfull \hbox (29.32137pt too wide) detected at line 162
+Overfull \hbox (24.32135pt too wide) detected at line 162
 \OML/cmm/m/it/10 p\OT1/cmr/m/n/10 (\OML/cmm/m/it/10 X[]\OMS/cmsy/m/n/10 j\OT1/c
 mr/m/n/10 +) = \OML/cmm/m/it/10 p\OT1/cmr/m/n/10 (+1\OMS/cmsy/m/n/10 j\OT1/cmr/
 m/n/10 +)\OML/cmm/m/it/10 p\OT1/cmr/m/n/10 (\OML/cmm/m/it/10 x[] \OT1/cmr/m/n/1
@@ -281,7 +281,7 @@ OT1/cmr/m/n/10 = 1\OMS/cmsy/m/n/10 j\OT1/cmr/m/n/10 +)\OML/cmm/m/it/10 p\OT1/cm
 r/m/n/10 (\OML/cmm/m/it/10 x[] \OT1/cmr/m/n/10 = 1\OMS/cmsy/m/n/10 j\OT1/cmr/m/
 n/10 +)\OML/cmm/m/it/10 p\OT1/cmr/m/n/10 (\OMS/cmsy/m/n/10 ^^@\OML/cmm/m/it/10 
 x[]x[] \OT1/cmr/m/n/10 = 1\OMS/cmsy/m/n/10 j\OT1/cmr/m/n/10 +) = 1\OML/cmm/m/it
-/10 =\OT1/cmr/m/n/10 32
+/10 =\OT1/cmr/m/n/10 8
  []
 
 
@@ -317,7 +317,7 @@ mr/m/n/10 ) \OMS/cmsy/m/n/10 ^^@ \OT1/cmr/m/n/10 (1\OML/cmm/m/it/10 =\OT1/cmr/m
  []
 
 
-Overfull \hbox (57.16536pt too wide) detected at line 258
+Overfull \hbox (57.16536pt too wide) detected at line 259
 \OT1/cmr/bx/n/10 x[]\OT1/cmr/m/n/10 (\OT1/cmr/bx/n/10 ^^F[] \OMS/cmsy/m/n/10 ^^
 @ \OT1/cmr/bx/n/10 ^^F[]\OT1/cmr/m/n/10 )\OT1/cmr/bx/n/10 x \OMS/cmsy/m/n/10 ^^
 @ \OT1/cmr/m/n/10 (\OT1/cmr/bx/n/10 m[]^^F[] \OMS/cmsy/m/n/10 ^^@ \OT1/cmr/bx/n
@@ -328,34 +328,40 @@ m/n/10 ^^@ \OT1/cmr/bx/n/10 m[]^^F[]m[] \OMS/cmsy/m/n/10 ^^@ \OT1/cmr/m/n/10 2
 [] [] + [] [] = 0
  []
 
-[4] [5] (./hw2.aux) ) 
+[4]
+<prob3_output.jpg, id=31, 632.3625pt x 467.64713pt>
+File: prob3_output.jpg Graphic file (type jpg)
+<use prob3_output.jpg>
+Package pdftex.def Info: prob3_output.jpg  used on input line 320.
+(pdftex.def)             Requested size: 442.65074pt x 327.35075pt.
+ [5] [6 <./prob3_output.JPG>] (./hw2.aux) ) 
 Here is how much of TeX's memory you used:
- 3306 strings out of 481248
- 42526 string characters out of 5922104
+ 3316 strings out of 481248
+ 42681 string characters out of 5922104
  296145 words of memory out of 5000000
- 18538 multiletter control sequences out of 15000+600000
+ 18546 multiletter control sequences out of 15000+600000
  535961 words of font info for 38 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
  38i,9n,31p,707b,217s stack positions out of 5000i,500n,10000p,200000b,80000s
-<c:/texlive/2019/texmf-dist/fonts/type1/public/amsfonts/cm
-/cmbx10.pfb><c:/texlive/2019/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx7.pf
-b><c:/texlive/2019/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb><c:/tex
-live/2019/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb><c:/texlive/2019
-/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi5.pfb><c:/texlive/2019/texmf-dis
-t/fonts/type1/public/amsfonts/cm/cmmi7.pfb><c:/texlive/2019/texmf-dist/fonts/ty
-pe1/public/amsfonts/cm/cmr10.pfb><c:/texlive/2019/texmf-dist/fonts/type1/public
-/amsfonts/cm/cmr12.pfb><c:/texlive/2019/texmf-dist/fonts/type1/public/amsfonts/
-cm/cmr5.pfb><c:/texlive/2019/texmf-dist/fonts/type1/public/amsfonts/cm/cmr7.pfb
-><c:/texlive/2019/texmf-dist/fonts/type1/public/amsfonts/cm/cmsl10.pfb><c:/texl
-ive/2019/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb><c:/texlive/2019/
-texmf-dist/fonts/type1/public/amsfonts/cm/cmsy5.pfb><c:/texlive/2019/texmf-dist
-/fonts/type1/public/amsfonts/cm/cmsy7.pfb><c:/texlive/2019/texmf-dist/fonts/typ
-e1/public/amsfonts/cm/cmti10.pfb><c:/texlive/2019/texmf-dist/fonts/type1/public
-/amsfonts/symbols/msbm10.pfb>
-Output written on hw2.pdf (5 pages, 178804 bytes).
+<c:/texlive/2019/texmf-dist/fonts/ty
+pe1/public/amsfonts/cm/cmbx10.pfb><c:/texlive/2019/texmf-dist/fonts/type1/publi
+c/amsfonts/cm/cmbx7.pfb><c:/texlive/2019/texmf-dist/fonts/type1/public/amsfonts
+/cm/cmex10.pfb><c:/texlive/2019/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi1
+0.pfb><c:/texlive/2019/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi5.pfb><c:/
+texlive/2019/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi7.pfb><c:/texlive/20
+19/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb><c:/texlive/2019/texmf-d
+ist/fonts/type1/public/amsfonts/cm/cmr12.pfb><c:/texlive/2019/texmf-dist/fonts/
+type1/public/amsfonts/cm/cmr5.pfb><c:/texlive/2019/texmf-dist/fonts/type1/publi
+c/amsfonts/cm/cmr7.pfb><c:/texlive/2019/texmf-dist/fonts/type1/public/amsfonts/
+cm/cmsl10.pfb><c:/texlive/2019/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10
+.pfb><c:/texlive/2019/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy5.pfb><c:/t
+exlive/2019/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy7.pfb><c:/texlive/201
+9/texmf-dist/fonts/type1/public/amsfonts/cm/cmti10.pfb><c:/texlive/2019/texmf-d
+ist/fonts/type1/public/amsfonts/symbols/msbm10.pfb>
+Output written on hw2.pdf (6 pages, 615235 bytes).
 PDF statistics:
- 84 PDF objects out of 1000 (max. 8388607)
- 60 compressed objects within 1 object stream
+ 88 PDF objects out of 1000 (max. 8388607)
+ 62 compressed objects within 1 object stream
  0 named destinations out of 1000 (max. 500000)
- 1 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 6 words of extra memory for PDF output out of 10000 (max. 10000000)
 

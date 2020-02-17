@@ -71,10 +71,10 @@ def learn_weights(data, correct_outputs, objective_function, learning_rate=0.000
     weights = initialize_weights(len(data[0]))
     for i in range(iterations):
         new_weights = grad_descent_iter(weights, data, correct_outputs, learning_rate, objective_function)
-        diff = abs(sum([new_weights[k] - weights[k] for k in range(len(weights))]))
+        # diff = abs(sum([new_weights[k] - weights[k] for k in range(len(weights))]))
         weights = new_weights
-        if diff <= 0.000001:
-            break
+        # if diff <= 0.000001:
+        #     break
         # print(weights)
     return weights
 
@@ -97,7 +97,8 @@ def generate_random_data(original_weights, std_dev=0.0, num_points=100):
 
     correct_outputs = []
     for x_i in data:
-        correct_outputs.append(sum([x_i[j] * original_weights[j] + std_dev * random.random() for j in range(len(x_i))]))
+        correct_outputs.append(
+            sum([x_i[j] * original_weights[j] + std_dev * np.random.normal(0.0, std_dev) for j in range(len(x_i))]))
 
     return data, correct_outputs
 
@@ -128,22 +129,36 @@ def calc_r2(actual_output, predicted_output):
     return 1 - (ss_res / ss_tot)
 
 
-w = [1, 2, 3, 4]
-data, outputs = generate_random_data(w, num_points=100, std_dev=0.5)
-print("Original weights", w)
-learned_weights_closed_form = learn_weights_closed_form(data, outputs)
-print("Closed Form (Maximum Likelyhood)-")
-print("Learned weights", learned_weights_closed_form)
-print("R2", calc_r2(outputs, predict(data, learned_weights_closed_form)))
-# plt.plot(np.array(data)[:, 1], outputs)
-learned_weights_sse = learn_weights(data, outputs, objective_function="sse", learning_rate=0.00001, iterations=10000)
-print("Sum of Squared Errors-")
-print("Learned weights", learned_weights_sse)
-print("R2", calc_r2(outputs, predict(data, learned_weights_sse)))
-learned_weights_ssd = learn_weights(data, outputs, objective_function="ssd", learning_rate=0.00001, iterations=10000)
-print("Sum of Squared Distances-")
-print("Learned weights", learned_weights_ssd)
-print("R2", calc_r2(outputs, predict(data, learned_weights_ssd)))
+def print_dec_places(l):
+    str = ""
+    for x in l:
+        str += "%.3f" % x + " "
+    return str
+
+
+for i in range(5):
+    if i is not 4:
+        continue
+    print("Dataset", i + 1)
+    w = [1 + i, 2 + i, 3 + i, 4 + i]
+    std_dev = 0.5 * i
+    data, outputs = generate_random_data(w, num_points=100, std_dev=std_dev)
+    print("Original weights ->", w, "    Standard Deviation of noise ->", std_dev)
+    learned_weights_closed_form = learn_weights_closed_form(data, outputs)
+    print("Closed Form (Maximum Likelyhood)     Learned weights -> [" + print_dec_places(learned_weights_closed_form) +
+          "]      R2 ->", print_dec_places([calc_r2(outputs, predict(data, learned_weights_closed_form))]))
+    # plt.plot(np.array(data)[:, 1], outputs)
+    learned_weights_sse = learn_weights(data, outputs, objective_function="sse", learning_rate=0.00001,
+                                        iterations=100000)
+    print("Sum of Squared Errors                Learned weights -> [" + print_dec_places(
+        learned_weights_sse) + "]      R2 ->", print_dec_places([calc_r2(outputs, predict(data, learned_weights_sse))]))
+
+    learned_weights_ssd = learn_weights(data, outputs, objective_function="ssd", learning_rate=0.00001,
+                                        iterations=100000)
+    print("Sum of Squared Euclidean Distances   Learned weights -> [" + print_dec_places(
+        learned_weights_ssd) + "]      R2 ->", print_dec_places([calc_r2(outputs, predict(data, learned_weights_ssd))]))
+    print()
+
 # data, outputs = generate_random_data(learned_weights, num_points=10)
 # plt.plot(np.array(data)[:, 1], outputs)
 # plt.show()
