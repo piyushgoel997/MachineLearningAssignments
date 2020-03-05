@@ -109,8 +109,8 @@ Piyush Goel - goel.pi@husky.neu.edu
   	 \end{enumerate}
    	 \item Since there are 20 different possible Amino Acids, therefore each of the 51 length matrix would be 51x20 instead, since either one-hot encoding or the position weight matrix are used.
    	 \item Python 3 will be used to do most of the coding, and some minor shell scripting to manipulate or look through the data (since the data files are extremely large and can not be loaded into the ram whole at once). The major third-party python libraries required are Tensorflow, Keras, Pandas and Numpy, more may be included if necessary.
-   	 \item The model architecture to be implemented is attached in the end of the file.
-   	 \item The architecture for the solvent accessibility and secondary structure prediction models is the same and is also attached to the end of the file.
+   	 \item The model architecture to be implemented is on page 5.
+   	 \item The architecture for the solvent accessibility and secondary structure prediction models is the same and is on page 6.
 	 \end{enumerate}
 
 	 Data:
@@ -129,10 +129,15 @@ Piyush Goel - goel.pi@husky.neu.edu
   	 	\item The accuracy of model on both withheld common primate variants and clinical variants increases with the number of benign variants used to train the network.
   	 	\item Training on variants from each of the six non-human primate species independently contributes to an increase in the performance of the network, whereas training on variants from more distant mammals negatively impacts the performance of the network.
   	 \end{enumerate}
+   
+   	 Fallback Option:
+   	 \begin{enumerate}
+   	 	\item In case the initial idea fails, the input to the model could be modified to use only the reference and alternate amino acids. This would significantly simplify the network, and even eliminating the need for the secondary structure and solvent accessibility prediction networks. But this would also very likely result in reduced accuracy, since now the network will have lesser information about the amino acid sequence, for example it would now have no idea about its secondary structure.
+   	 \end{enumerate}
 
 \item \textbf{Individual tasks}
      \begin{enumerate}
-     \item There is only one team member so all the work will be done by one person.
+     \item There is only one team member so all of the work will be done by one person.
      \end{enumerate}
 
 \item \textbf{References}
