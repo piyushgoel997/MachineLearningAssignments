@@ -160,12 +160,23 @@ where $\bar{A}$ is the negation of $A$ and $\oplus$ is an exclusive OR operation
 \begin{enumerate}
 	\item 
 	
-	\includegraphics[scale=0.5]{3a.png}
+	\includegraphics[scale=0.48]{3a.png}
 	
 	\item
 	
-	\includegraphics[scale=0.5]{3b.png}
+	\includegraphics[scale=0.48]{3b.png}
+	
 	Information Gain calculation at step 1:\\
+	Entropy of the "Sky" node = $-p(No)\log p(No) - p(Yes) \log p(Yes) = -0.4 \log 0.4 - 0.6 \log 0.6 = 0.0.970$\\
+	Entropy of the "Sunny" side if we split using "Sky" = $-p(No)\log p(No) - p(Yes) \log p(Yes) = -0.25 \log 0.25 - 0.75 \log 0.75 = 0.811$\\
+	Entropy of the "Rainy" side if we split using "Sky" = $-p(No)\log p(No) - p(Yes) \log p(Yes) = -1 \log 1 - 0 \log 0 = 0$\\
+	Information Gain = $0.970 - \frac{4}{5}0.811 - \frac{1}{5}0 = 0.322$
+	
+	Information Gain calculation at step 2:\\
+	Entropy of the "Wind" Node = $-p(No)\log p(No) - p(Yes) \log p(Yes) = -0.25 \log 0.25 - 0.75 \log 0.75 = 0.811$\\
+	Entropy of the "Strong" side if we split using "Wind" = $-p(No)\log p(No) - p(Yes) \log p(Yes) = - 0 \log 0 -1 \log 1  = 0$\\
+	Entropy of the "Weak" side if we split using "Wind" = $-p(No)\log p(No) - p(Yes) \log p(Yes) = -1 \log 1 - 0 \log 0 = 0$\\
+	Information Gain = $0.811$
 \end{enumerate}
 
 %%
@@ -187,54 +198,79 @@ In each case, evaluate the model using 10-fold cross-validation. Make sure that 
 \textbf{Solution}
 
 \textbf{No normalization and pre-processing}\\
-Dataset: banknote authentication: Avg AUC = 0.99886\\
+Dataset: banknote authentication: Avg AUC = 0.99843\\
+\includegraphics[scale=0.4]{Plots/Banknote.jpg}
 
-Dataset: spambase: Avg AUC = 0.9653\\
-
-Dataset: adults with over 50k salary: Avg AUC = 0.80541\\
-
+Dataset: spambase: Avg AUC = 0.96855\\
+\includegraphics[scale=0.4]{Plots/Spambase.jpg}
+\\\\
+Dataset: adults with over 50k salary: Avg AUC = 0.82571\\
+\includegraphics[scale=0.4]{Plots/Adult.jpg}
 
 \textbf{z-score normalization}\\
-Dataset: banknote authentication: Avg AUC = 0.99906\\
+Dataset: banknote authentication: Avg AUC = 0.99925\\
+\includegraphics[scale=0.4]{Plots/Banknote_Z_Score.jpg}
 
-Dataset: spambase: Avg AUC = 0.96942\\
-
-Dataset: adults with over 50k salary: Avg AUC = 0.83455\\
+Dataset: spambase: Avg AUC = 0.96874\\
+\includegraphics[scale=0.4]{Plots/Spambase_Z_Score.jpg}
+\newpage
+Dataset: adults with over 50k salary: Avg AUC = 0.84754\\
+\includegraphics[scale=0.4]{Plots/Adult_Z_Score.jpg}
 
 
 \textbf{PCA with zero mean normalization}\\
-Number of chosen Columns =  4 Total number of Columns =  4\\
-Dataset: banknote authentication: Avg AUC = 0.99906\\
 
-Number of chosen Columns =  2 Total number of Columns =  57\\
-Dataset: spambase: Avg AUC = 0.75886\\
+Dataset: banknote authentication: Avg AUC = 0.99933, Number of chosen Columns =  4, Total number of Columns =  4\\
+\includegraphics[scale=0.4]{Plots/Banknote_PCA_Zero_Mean.jpg}
 
-Number of chosen Columns =  1 Total number of Columns =  14\\
-Dataset: adults with over 50k salary: Avg AUC = 0.51027\\
+Dataset: spambase: Avg AUC = 0.78305, Number of chosen Columns =  2, Total number of Columns =  57\\
+\includegraphics[scale=0.4]{Plots/Spambase_PCA_Zero_Mean.jpg}
+\newpage
+
+Dataset: adults with over 50k salary: Avg AUC = 0.50349, Number of chosen Columns =  1, Total number of Columns =  14\\
+\includegraphics[scale=0.4]{Plots/Adult_PCA_Zero_Mean.jpg}
 
 
 \textbf{PCA with z-score normalization}\\
-Number of chosen Columns =  4 Total number of Columns =  4\\
-Dataset: banknote authentication: Avg AUC = 0.99931\\
+Dataset: banknote authentication: Avg AUC = 0.99913, Number of chosen Columns =  4, Total number of Columns =  4\\
+\includegraphics[scale=0.4]{Plots/Banknote_PCA_Z_Score.jpg}
 
-Number of chosen Columns =  54 Total number of Columns =  57\\
-Dataset: spambase: Avg AUC = 0.96903\\
+Dataset: spambase: Avg AUC = 0.96829, Number of chosen Columns =  54, Total number of Columns =  57\\
+\includegraphics[scale=0.4]{Plots/Spambase_PCA_Z_Score.jpg}
+\newpage
 
-Number of chosen Columns =  14 Total number of Columns =  14\\
-Dataset: adults with over 50k salary: Avg AUC = 0.83534\\
+Dataset: adults with over 50k salary: Avg AUC = 0.84726, Number of chosen Columns =  14, Total number of Columns =  14\\
+\includegraphics[scale=0.4]{Plots/Adult_PCA_Z_Score.jpg}
 	
 	
-Now, as we can see the average AUC-ROC (which is indicative of accuracy) for almost all of the datasets increase from part a to b then decreases for part c and then again increases for d. Therefore the final order is $b > a > d > c$. This can be explained as follows:\\
+Now, as we can see the average AUC-ROC (which is indicative of accuracy) for almost all of the datasets increase from part a to b then decreases for part c and then again increases for d. Therefore the final order of AUCs is (very) roughly $b > a > d > c$. This can be explained as follows:\\
 $b>a$: because we just normalize the data in part b over part a and this may help the learning process, but not too much, hence the increase is almost insignificant. \\
 $c < a, c < b, d < b, d < c$: because we're doing PCA which removes some amount of information by removing the features with low variance contribution to the data.\\
-$d > c$: Since, during z-score normalization we divide each feature value by the feature's standard-deviation as well and not just subtract the mean, this helps scale down the feature values, effectively lowering the variance of the feature as well. This results in a higher (much higher in some cases) number of features being selected in when PCA is done after z-score normalization instead of zero mean normalization. Hence the better results for part c.
+$d > c$: Since, during z-score normalization we divide each feature value by the feature's standard-deviation as well and not just subtract the mean, this helps scale down the feature values, effectively lowering the variance of the feature as well. This results in a higher (much higher in some cases) number of features (of better quality) being selected in when PCA is done after z-score normalization instead of zero mean normalization. Hence the better results for part d.
 
 
+\newpage
 %%
 %% Problem
 %%
 
 \textbf{Extra Problem.} (25 points) Consider a data set $\mathbf{X}\in\mathbb{R}^{n\times d}$ such that $d\gg n$. Propose how to perform principal component analysis if one must avoid the construction of a large $d\times d$ covariance matrix. You can assume that a $d \times n$ matrix can fit in the memory. This is an all or nothing question. If your result is correct you get 25 points; if not, you get 0 points.
+
+
+\textbf{Solution}\\
+
+Throughout this solution it is assumed that the means of the columns of matrix $X$ have been reduced to 0. Therefore, the covariance matrix $\Sigma$ can be expressed simply as $X^T X$. From the class we know that PCA reduces simply to the eigen problem, that is $V^T \Sigma V = \Lambda$. Here, since $V$ is an orthogonal matrix we can rewrite the expression as $\Sigma = V \Lambda V^T$, where $V$ is a matrix containing eigen vectors as columns and $\Lambda$ is a diagonal matrix containing eigen values as the diagonal elements.
+
+Using the compact form of SVD the matrix $X$ can be expressed as $USV^T$, where $U$ is a $n$ x $n$ orthogonal matrix, $S$ is a $n$ x $n$ diagonal matrix, $V$ (this $V$ and the $V$ in the previous paragraph should be considered different, even though they later turn out to be the same) is a $d$ x $n$ orthogonal matrix.
+
+Therefore, $\Sigma$ can be expressed as follows
+\begin{equation*}
+	\Sigma = X^T X = (USV^T)^T(USV^T) = VS^TU^TUSV^T = VS^TSV^T
+\end{equation*}
+Comparing this with the result which we got in the first paragraph ($\Sigma = V \Lambda V^T$), we see that both the $V$ are the same and that $S^TS$ would give us $\Lambda$.
+
+This shows that if we do compact SVD of the matrix $X$ the $V^T$ which we get would give us the eigen vectors and the $S$ would give us the eigen values and since none of $U$, $V$ or $S$ are $d$ x $d$ and none of the calculation during SVD would involve using a $d$ x $d$ matrix, we can easily evade having to store a large $d$ x $d$ matrix.
+
 
 
 \end{document}
