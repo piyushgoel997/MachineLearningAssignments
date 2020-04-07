@@ -243,8 +243,8 @@ Dataset: adults with over 50k salary: Avg AUC = 0.84726, Number of chosen Column
 \includegraphics[scale=0.4]{Plots/Adult_PCA_Z_Score.jpg}
 	
 	
-Now, as we can see the average AUC-ROC (which is indicative of accuracy) for almost all of the datasets increase from part a to b then decreases for part c and then again increases for d. Therefore the final order of AUCs is (very) roughly $b > a > d > c$. This can be explained as follows:\\
-$b>a$: because we just normalize the data in part b over part a and this may help the learning process, but not too much, hence the increase is almost insignificant. \\
+Now, as we can see the average AUC-ROC (which is indicative of accuracy) for almost all of the datasets increase from part a to b then decreases for part c and then again increases for d. Therefore the final order of AUCs is (very) roughly $b \approx a > d > c$. This can be explained as follows:\\
+$b \approx a$: because we just normalize the data in part b over part a and not really change the actual information contained in the data. \\
 $c < a, c < b, d < b, d < c$: because we're doing PCA which removes some amount of information by removing the features with low variance contribution to the data.\\
 $d > c$: Since, during z-score normalization we divide each feature value by the feature's standard-deviation as well and not just subtract the mean, this helps scale down the feature values, effectively lowering the variance of the feature as well. This results in a higher (much higher in some cases) number of features (of better quality) being selected in when PCA is done after z-score normalization instead of zero mean normalization. Hence the better results for part d.
 
@@ -259,18 +259,21 @@ $d > c$: Since, during z-score normalization we divide each feature value by the
 
 \textbf{Solution}\\
 
-Throughout this solution it is assumed that the means of the columns of matrix $X$ have been reduced to 0. Therefore, the covariance matrix $\Sigma$ can be expressed simply as $X^T X$. From the class we know that PCA reduces simply to the eigen problem, that is $V^T \Sigma V = \Lambda$. Here, since $V$ is an orthogonal matrix we can rewrite the expression as $\Sigma = V \Lambda V^T$, where $V$ is a matrix containing eigen vectors as columns and $\Lambda$ is a diagonal matrix containing eigen values as the diagonal elements.
-
-Using the compact form of SVD the matrix $X$ can be expressed as $USV^T$, where $U$ is a $n$ x $n$ orthogonal matrix, $S$ is a $n$ x $n$ diagonal matrix, $V$ (this $V$ and the $V$ in the previous paragraph should be considered different, even though they later turn out to be the same) is a $d$ x $n$ orthogonal matrix.
-
-Therefore, $\Sigma$ can be expressed as follows
+Throughout this solution it is assumed that the means of the columns of matrix $X$ have been reduced to 0. Therefore, the covariance matrix $\Sigma$ can be expressed simply as $X^T X$. From the class we know that PCA reduces simply to the eigenvalue problem, that is $\Sigma V = V \Lambda$, where $V$ is a matrix containing eigen vectors as columns and $\Lambda$ is a diagonal matrix containing eigenvalues as the diagonal elements. We have,
 \begin{equation*}
-	\Sigma = X^T X = (USV^T)^T(USV^T) = VS^TU^TUSV^T = VS^TSV^T
+	\Sigma V = V \Lambda
 \end{equation*}
-Comparing this with the result which we got in the first paragraph ($\Sigma = V \Lambda V^T$), we see that both the $V$ are the same and that $S^TS$ would give us $\Lambda$.
+\begin{equation*}
+	X^TX V = V \Lambda
+\end{equation*}
+Pre-multiplying both sides by X.
+\begin{equation*}
+	XX^TX V = XV \Lambda
+\end{equation*}
+Substituting $\Sigma' = XX^T$ and $V' = XV$, we get $\Sigma' V' = V' \Lambda$, which is also an eigen value problem, which gives the same eigenvalue diagonal matrix $\Lambda$.
 
-This shows that if we do compact SVD of the matrix $X$ the $V^T$ which we get would give us the eigen vectors and the $S$ would give us the eigen values and since none of $U$, $V$ or $S$ are $d$ x $d$ and none of the calculation during SVD would involve using a $d$ x $d$ matrix, we can easily evade having to store a large $d$ x $d$ matrix.
+Now, to get the eigenvectors $V$ we could pre-multiply this equation by $X^T$ which gives us $X^TXX^T V' = X^T V' \Lambda$. Simplifying this we get, $\Sigma X^T V' = X^T V' \Lambda$, on comparing this with the original pca eigenvalue problem we get $V = X^T V'$.
 
-
+We can see that to solve the newer eigenvalue problem we had to store $XX^T$ instead of $X^TX$, hence requiring only to store a $n \times n$ matrix and not a $d \times d$ matrix, all the other operations would also only require us to store $d \times n$ or $n \times d$ matrices.
 
 \end{document}
