@@ -1,0 +1,104 @@
+% CS6140 Homework Assignment Template
+% Computer Science
+% Northeastern University
+% Boston, MA 02115
+
+% Do not manipulate any of the settings
+\documentclass[twoside]{article}
+
+\usepackage{epsfig}
+\usepackage{natbib}
+\usepackage{units}
+\usepackage{amssymb}
+\usepackage{amsmath}
+\usepackage{babel}
+
+
+\setlength{\oddsidemargin}{0 in}
+\setlength{\evensidemargin}{0 in}
+\setlength{\topmargin}{-0.6 in}
+\setlength{\textwidth}{6.5 in}
+\setlength{\textheight}{8.5 in}
+\setlength{\headsep}{0.75 in}
+\setlength{\parindent}{0 in}
+\setlength{\parskip}{0.1 in}
+
+\newcommand{\lecture}[3]{
+   \pagestyle{myheadings}
+   \thispagestyle{plain}
+   \newpage
+   \setcounter{page}{1}
+   \noindent
+   \begin{center}
+   \framebox{
+      \vbox{\vspace{2mm}
+    \hbox to 6.28in { {\bf CS6140: Machine Learning\hfill} }
+       \vspace{6mm}
+       \hbox to 6.28in { {\Large \hfill #1  \hfill} }
+       \vspace{6mm}
+       \hbox to 6.28in { {\it Assigned: #2 \hfill Due: #3} }
+      \vspace{2mm}}
+   }
+   \end{center}
+   \markboth{#1}{#1}
+   \vspace*{4mm}
+}
+
+\begin{document}
+
+% to have alphanumeric enumeration (Hasan's command)
+\renewcommand{\labelenumi}{\alph{enumi})}
+
+\lecture{Homework Assignment \# 5}{04/03/2020}{04/13/2019, 11:59pm, through Blackboard}
+
+\begin{center}
+Two problems, 80 points in total. Good luck!\\
+Prof. Predrag Radivojac, Northeastern University
+\end{center}
+
+Consider two classification concepts given in Figure 1, where $x\in\mathcal{X}=[-6,6]\times[-4,4]$, $y\in\mathcal{Y}=\left\{-1,+1\right\}$ and $p(y|x) \in \left \{0,1\right \}$ is defined in the drawing. 
+
+\begin{figure}[h]
+\centering
+\includegraphics[width=\linewidth]{nnconcepts.eps}
+\caption{Two concepts where examples that fall within any of the three $3\times3$ (panel A) or $1\times1$ (panel B) squares are labeled positive and the remaining examples (outside each of the squares but within $\mathcal{X}$) are labeled negative. The position of the point $x=(x_1,x_2)$ in the upper left-hand corner for each square is shown in the picture. Consider horizontal axis to be $x_1$ and vertical axis as $x_2$.}
+\label{fig:homology}
+\end{figure}
+
+Your experiments in this question will rely on generating a data set of size $n$ drawn from a uniform distribution in $\mathcal{X}$ and labeled according to the rules from Figure 1; e.g., $P(Y=1|x)=1$ if $x$ that was randomly drawn is inside any of the three squares in either of the two panels. The goal of the following two problems will be to learn and evaluate classifiers created from the data generated in this way. You will also evaluate the performance of performance estimation methods. 
+
+You can use any library you want in this assignment and do programming in Python, MATLAB, R or C/C++. Your code should be easy to run for each question and sub-question below so that we can replicate your results to the maximum extent possible.
+
+%%
+%% Problem
+%%
+
+\textbf{Problem 1.} (50 points) Consider single-output feed-forward neural networks with one or two hidden layers such that the number of hidden neurons in each layer is $h_1\in\left\{1, 4, 8\right\}$ and $h_2\in\left\{0, 3\right\}$, respectively, with $h_2=0$ meaning that there is no second hidden layer. Consider one of the standard objective functions as your optimization criterion and use early stopping and regularization as needed. Consider a hyperbolic tangent activation function in each neuron and the output but you are free to experiment with others if you'd like to. For each of the architectures, defined by a parameter combination $(h_1,h_2)$, estimate the performance of each model using 10-fold cross-validation. Select classification accuracy and area under the ROC curve (AUC) as your two performance criteria. Then train a final model for each architecture using all $n$ labeled examples.  
+
+\begin{enumerate}
+\item (30 points) Generate a data set with $n=1000$ labeled examples according to each of the two concepts above. Construct models (a single network for each $h_1$-$h_2$ combination) and evaluate their performance on this data set. Report the results in two tables, one for each concept. Use bootstrapping, with $B$ at least 100, to report 68\% confidence intervals. For example, if a model achieves accuracy of 80.2\% with standard error of 3.5\%, report the value in the table as $80.2\pm 3.5$. Use only one significant figure after the decimal point.
+\item (10 points) Train a single final model for each parameter combination on the entire set of $n$ examples and visualize its output of using heat maps. To generate a high-resolution heat map, generate a data set on a fine-grained grid in $\mathcal{X}$ and make predictions on all those examples using your final models. There should be six heat maps reported in your results for each of the two concepts in Figure 1. Use the same grid to approximate the true accuracy of the model and verify whether it falls into the 68\% confidence intervals of the estimated performance. According to theory, this should happen in about 68\% of your experiments.
+\item (10 points) Set $n=10000$, train a neural network with $h_1=12$ and $h_2=3$ for each of the two concepts, estimate its performance, and visualize its predictions using heat maps. Discuss your observations and explain what might be the reasoning behind setting $h_1=12$ and $h_2=3$. Now set $h_1=24$ and $h_2=9$ and repeat the steps. Discuss your observations.
+\end{enumerate}
+
+%%
+%% Problem
+%%
+
+\textbf{Problem 2.} (30 points) Repeat step a) from Problem 1 in the following two scenarios.
+
+\begin{enumerate}
+\item (10 points) Train 30 neural networks on each data set for each parameter combination. To ensure these 30 trained models are different from one another, you can initialize the weights differently, randomize the order of points fed during the optimization, change training algorithm, etc. To make a prediction on a previously unseen example, average the outputs of 30 models. Report the performance in two tables as before. If computational resources are a problem, use 10 networks as your ensemble and select a subset of parameter combinations such that the computation is feasible.
+\item (10 points) Train 30 neural networks, but in each case first sample the training examples with replacement from the original training set (make sure you keep the size of the training set the same as the original training set). Then average the outputs of 30 networks to make predictions on previously unseen examples. Report the performance in two tables as before.
+\item (10 points) Discuss your observations from the previous two steps, making sure that you provide plausible explanations for the observed phenomena. Compare both 30-model ensembles to a single model but also two different types of model averaging.
+\end{enumerate}
+
+%%
+%% Problem
+%%
+
+\textbf{Extra Problem} (15 points) Prove representational equivalence of a three-layer neural network with linear activation function in all neurons and a single-layer layer neural network with the same activation function.
+
+\input{policies.tex}
+
+\end{document}
