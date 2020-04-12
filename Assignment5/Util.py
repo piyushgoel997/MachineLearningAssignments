@@ -69,8 +69,10 @@ def k_fold_cross_validation(h1, h2, data, k=10, epochs=100):
         model.fit(train_data, y_train, epochs=epochs, verbose=0)
 
         # bootstrapping
+        roc_auc_ = []
+        acc_ = []
         for b in range(100):
-            d_b, y_true = sample_with_replacement(test_data, y_test, 500)
+            d_b, y_true = sample_with_replacement(test_data, y_test, len(y_test))
             scores = model.predict(d_b)
             roc_auc[b] += 100 * auc(*roc_curve(y_true, scores)[0:2])
             y_pred = prediction(scores)
@@ -98,7 +100,10 @@ def plot_heatmap_print_acc(model, part="A", filename=None):
 
 def sample_with_replacement(x, y, n):
     idx = random.choices(range(len(x)), k=n)
+    while np.sum(y[idx]) == 0:
+        idx = random.choices(range(len(x)), k=n)
     return x[idx], y[idx]
+
 
 
 def k_fold_cross_validation_ensemble(h1, h2, data, k=10, epochs=100, num_models=10, decision="average", threshold=0.5,
@@ -121,7 +126,7 @@ def k_fold_cross_validation_ensemble(h1, h2, data, k=10, epochs=100, num_models=
             models.append(model)
 
         for b in range(100):
-            d_b, y_true = sample_with_replacement(test_data, y_test, 500)
+            d_b, y_true = sample_with_replacement(test_data, y_test, len(y_test))
 
             scores = []
             for m in models:
