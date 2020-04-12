@@ -92,7 +92,7 @@ def plot_heatmap_print_acc(model, part="A", filename=None):
     print("Accuracy =", str(round(100 * acc, 1)))
     c = np.concatenate((fine_data[0], scores), axis=1)
     c = pd.DataFrame(c, columns=["x1", "x2", "class"]).pivot("x2", "x1", "class")
-    ax = sns.heatmap(pd.DataFrame(c), vmax=1.0)
+    ax = sns.heatmap(pd.DataFrame(c))
     ax.invert_yaxis()
     plt.savefig(filename)
     plt.clf()
